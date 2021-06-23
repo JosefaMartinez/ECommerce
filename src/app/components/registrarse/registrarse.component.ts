@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,Validators,FormBuilder} from '@angular/forms'
 
+import { ProductosService } from '../../services/productos.service';
+import { Region } from 'src/app/models/region';
+import { Comuna } from 'src/app/models/comuna';
+
 @Component({
   selector: 'app-registrarse',
   templateUrl: './registrarse.component.html',
@@ -8,6 +12,10 @@ import {FormGroup,Validators,FormBuilder} from '@angular/forms'
 })
 export class RegistrarseComponent implements OnInit 
 {
+  regiones: any = [];
+  comunas: any =[];
+  
+
   formulario:FormGroup;
   formularioAUX:any;
   formularioAUXMOD = {
@@ -23,10 +31,17 @@ export class RegistrarseComponent implements OnInit
     contrasenaC: null
   }
   submitted = false;
-  constructor(private formBuilder: FormBuilder)
+  constructor(private formBuilder: FormBuilder, private productosServices: ProductosService)
   { 
+    
     this.formulario = this.formBuilder.group({
     }); 
+
+    this.regiones = [
+      {idRegion: 0 , nombreRegion: ''}
+    ];
+
+  
   }
 
   ngOnInit() {
@@ -46,6 +61,24 @@ export class RegistrarseComponent implements OnInit
     {
       validator: this.MustMatch('contrasena','contrasenaC')
     }
+    );
+
+    this.productosServices.getRegiones().subscribe(
+      res => {
+        this.regiones = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  onSelect(idRegion:number): void{
+    console.log('Id Region->',idRegion);
+
+    this.productosServices.getComunasPorRegion(idRegion).subscribe(
+      res => {
+        this.comunas = res;
+      },
+      err => console.error(err)
     );
   }
 

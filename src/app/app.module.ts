@@ -1,23 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//Servicios
+import {HttpClientModule} from '@angular/common/http';
+import {ProductosService} from './services/productos.service';
+
+//Formulario
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { IniciarsesionComponent } from './iniciarsesion/iniciarsesion.component';
-import { RegistrarseComponent } from './registrarse/registrarse.component';
+//Componentes
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { IniciarsesionComponent } from './components/iniciarsesion/iniciarsesion.component';
+import { RegistrarseComponent } from './components/registrarse/registrarse.component';
 
+//Angular material
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+
+//Boostrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -40,7 +49,9 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ProductosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

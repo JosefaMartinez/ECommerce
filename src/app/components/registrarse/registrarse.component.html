@@ -45,37 +45,34 @@
                             <div *ngIf="f.direccion.errors.required">Por favor, ingrese su Dirección</div>
                         </div>
                     </div> 
+<!--
 
                     <div class="form-group">
-                        <label for="idRegion"> Región </label>
-                        <select class="form-control" formControlName="idRegion" [ngClass]="{ 'is-invalid': submitted && f.idRegion.errors }">
-                            <option value="">Seleccionar Región</option>
-                            <option value="region1">Región de Arica y Parinacota</option>  
-                            <option value="region2">Tarapacá</option>
-                            <option value="region3">Antofagasta</option>
-                            <option value="region4">Atacama</option>
-                            <option value="region5">Coquimbo</option>
-                            <option value="region6">Valparaíso</option> 
-                            <option value="region7">Región Metropolitana de Santiago</option>   
-                            <option value="region8">O'Higgins</option>
-                            <option value="region9">El Maule</option>
-                            <option value="region10">Ñuble</option>
-                            <option value="region11">Bío Bío</option>
-                            <option value="region12">Araucanía</option>
-                            <option value="region13">Los Ríos</option> 
-                            <option value="region14">Los Lagos</option> 
-                            <option value="region15">Aysén</option>
-                            <option value="region16">Magallanes y Antártica Chilena</option>
+                        <label  for="idRegion"> Región </label>
+                        <select (change)="onSelect($event.target.value)" class="form-control" formControlName="idRegion" >
+                            <option value="" selected disabled>Seleccionar Región</option>
+                            <option *ngFor="let region of regiones" value={{region.idRegion}}>{{region.nombreRegion}}</option>  
+                    
                         </select>
-                        <div *ngIf="submitted && f.idRegion.errors" class="invalid-feedback">
-                            <div *ngIf="f.idRegion.errors.required">Por favor, seleccione la Región</div>
-                        </div>
+                        
                    </div>
+-->
+                   <div class="form-group">
+                    <label  for="idRegion"> Región </label>
+                    <select  class="form-control" formControlName="idRegion" [ngClass]="{ 'is-invalid': submitted && f.idRegion.errors }">
+                        <option value="" selected disabled>Seleccionar Región</option>
+                        <option *ngFor="let region of regiones" value={{region.idRegion}}>{{region.nombreRegion}}</option>  
+                
+                    </select>
+                    <div *ngIf="submitted && f.idRegion.errors" class="invalid-feedback">
+                        <div *ngIf="f.idRegion.errors.required">Por favor, seleccione la Región</div>
+                    </div>
+               </div>
 
                     <div class="form-group">
-                        <label for="idComuna">Comuna (No hay nah)</label>
-                        <select class="form-control" formControlName="idComuna" [ngClass]="{ 'is-invalid': submitted && f.idRegion.errors }">
-                            <option value="">Seleccionar Comuna</option>
+                        <label for="idComuna">Comuna</label>
+                        <select  class="form-control" formControlName="idComuna" [ngClass]="{ 'is-invalid': submitted && f.idRegion.errors }">
+                            <option value="" selected disabled>Seleccionar Comuna</option>
                             <option value="Prueba">Prueba</option>
                         </select>
                         <div *ngIf="submitted && f.idComuna.errors" class="invalid-feedback">

@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {RegistrarseComponent} from './registrarse/registrarse.component';
+import {HomeComponent} from './components/home/home.component';
+import {RegistrarseComponent} from './components/registrarse/registrarse.component';
+import { IniciarsesionComponent } from './components/iniciarsesion/iniciarsesion.component';
 
 const routes: Routes = [
-  {path: '',component:HomeComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'}, //Para definir que por defecto se redireccione a home
+
+  {path: 'home', component:HomeComponent},
   {path: 'Registrarse',component:RegistrarseComponent},
+  {path: 'IniciarSesion',component:IniciarsesionComponent },
 ];
 
 @NgModule({
